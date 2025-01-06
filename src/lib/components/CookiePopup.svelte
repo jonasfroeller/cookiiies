@@ -1,28 +1,28 @@
 <script lang="ts">
-	import * as Drawer from '$lib/components/ui/drawer/index.js';
+	import * as AlertDialog from '$lib/components/ui/dialog/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Switch } from '$lib/components/ui/switch/index.js';
-	import { cookiePreferences } from '$lib/utils/cookie-preferences.js';
 	import * as Accordion from '$lib/components/ui/accordion/index.js';
-	import { onMount } from 'svelte';
 	import { ScrollArea } from './ui/scroll-area/index.js';
+	import { cookiePreferences } from '$lib/utils/cookie-preferences.js';
+	import { onMount } from 'svelte';
 
 	onMount(() => {
 		cookiePreferences.loadPreferences();
 	});
 </script>
 
-<Drawer.Root closeOnEscape={true} closeOnOutsideClick={true} open={true}>
-	<Drawer.Content>
-		<Drawer.Header>
-			<Drawer.Title class="text-2xl font-bold">Cookie Preferences</Drawer.Title>
-			<Drawer.Description class="mt-4">
+<AlertDialog.Root closeOnEscape={true} closeOnOutsideClick={true} open={true}>
+	<AlertDialog.Content class="max-w-2xl">
+		<AlertDialog.Header>
+			<AlertDialog.Title class="text-2xl font-bold">Cookie Preferences</AlertDialog.Title>
+			<AlertDialog.Description class="mt-4">
 				We use cookies to enhance your experience on our website. Here you can manage your
 				preferences.
-			</Drawer.Description>
-		</Drawer.Header>
+			</AlertDialog.Description>
+		</AlertDialog.Header>
 
-		<div class="px-4 mt-4">
+		<div class="mt-6">
 			<div class="space-y-4">
 				{#each $cookiePreferences.categories as category}
 					<div class="flex items-start p-4 space-x-4 border rounded">
@@ -45,7 +45,7 @@
 							Detailed Cookie Information
 						</Accordion.Trigger>
 						<Accordion.Content class="pt-2 pb-4">
-							<ScrollArea class="h-[100px]">
+							<ScrollArea class="h-[150px]">
 								<div class="p-4 space-y-1 text-sm rounded-md bg-secondary">
 									<p>
 										<strong>Storage Duration:</strong> The storage duration of cookies varies depending
@@ -80,17 +80,15 @@
 			</div>
 		</div>
 
-		<Drawer.Footer>
-			<div class="flex flex-wrap justify-end gap-2 mt-2">
-				<Button variant="outline" on:click={cookiePreferences.rejectAll}>Reject All</Button>
-				<Button variant="outline" on:click={cookiePreferences.acceptSelected}>
-					Confirm Selection
-				</Button>
-				<Drawer.Close>
-					<Button variant="secondary">Close</Button>
-				</Drawer.Close>
-				<Button variant="default" on:click={cookiePreferences.acceptAll}>Accept All</Button>
-			</div>
-		</Drawer.Footer>
-	</Drawer.Content>
-</Drawer.Root>
+		<div class="flex justify-end mt-2 space-x-4">
+			<Button variant="outline" on:click={cookiePreferences.rejectAll}>Reject All</Button>
+			<Button variant="outline" on:click={cookiePreferences.acceptSelected}>
+				Confirm Selection
+			</Button>
+			<AlertDialog.Close>
+				<Button variant="secondary">Cancel</Button>
+			</AlertDialog.Close>
+			<Button variant="default" on:click={cookiePreferences.acceptAll}>Accept All</Button>
+		</div>
+	</AlertDialog.Content>
+</AlertDialog.Root>
