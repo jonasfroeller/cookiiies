@@ -2,12 +2,12 @@
 	import type { HTMLAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils.js";
 
-	type $$Props = HTMLAttributes<HTMLDivElement>;
+	type $$Props = HTMLAttributes<HTMLTableCaptionElement>;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
-<div class={cn("flex flex-col space-y-2 text-center sm:text-left", className)} {...$$restProps}>
+<caption class={cn("text-muted-foreground mt-4 text-sm", className)} {...$$restProps}>
 	<slot />
-</div>
+</caption>
