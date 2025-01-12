@@ -3,7 +3,7 @@
 	import Button from './ui/button/button.svelte';
 	import Switch from './ui/switch/switch.svelte';
 	import * as Table from './ui/table/index.js';
-	import { browser } from '$app/environment';
+	import { BROWSER } from 'esm-env';
 	import { onMount } from 'svelte';
 
 	let cookieName = '';
@@ -18,14 +18,14 @@
 	});
 
 	function refreshCookies() {
-		if (browser) {
+		if (BROWSER) {
 			cookies = CookieManager.getAll();
 			console.log('Refreshed cookies:', cookies);
 		}
 	}
 
 	function setCookie() {
-		if (browser) {
+		if (BROWSER) {
 			const success = CookieManager.set(cookieName, cookieValue, {
 				days: cookieDays,
 				secure: isSecure,
@@ -39,7 +39,7 @@
 	}
 
 	function updateCookie() {
-		if (browser) {
+		if (BROWSER) {
 			const success = CookieManager.update(cookieName, cookieValue, {
 				days: cookieDays,
 				secure: isSecure,
@@ -53,7 +53,7 @@
 	}
 
 	function deleteCookie(name: string) {
-		if (browser) {
+		if (BROWSER) {
 			const success = CookieManager.delete(name);
 			if (!success) {
 				alert('Cookie not found!');
@@ -71,7 +71,7 @@
 				id="cookieName"
 				type="text"
 				bind:value={cookieName}
-				class="w-full px-3 py-2 border rounded-md"
+				class="px-3 py-2 w-full rounded-md border"
 			/>
 		</div>
 
@@ -81,7 +81,7 @@
 				id="cookieValue"
 				type="text"
 				bind:value={cookieValue}
-				class="w-full px-3 py-2 border rounded-md"
+				class="px-3 py-2 w-full rounded-md border"
 			/>
 		</div>
 	</div>
@@ -93,7 +93,7 @@
 				id="cookieDays"
 				type="number"
 				bind:value={cookieDays}
-				class="w-32 px-3 py-2 border rounded-md"
+				class="px-3 py-2 w-32 rounded-md border"
 			/>
 		</div>
 
@@ -104,7 +104,7 @@
 
 		<div class="space-y-2">
 			<label for="sameSiteSelect" class="text-sm font-medium">SameSite</label>
-			<select id="sameSiteSelect" bind:value={sameSite} class="px-3 py-2 border rounded-md">
+			<select id="sameSiteSelect" bind:value={sameSite} class="px-3 py-2 rounded-md border">
 				<option value="Lax">Lax</option>
 				<option value="Strict">Strict</option>
 				<option value="None">None</option>
@@ -122,7 +122,7 @@
 		{#if Object.keys(cookies).length === 0}
 			<p class="italic text-gray-500">No cookies found</p>
 		{:else}
-			<div class="border rounded">
+			<div class="rounded border">
 				<Table.Root>
 					<Table.Header>
 						<Table.Row>
@@ -138,7 +138,7 @@
 									<Button
 										variant="outline"
 										size="sm"
-										class="rounded-full px-2.5 py-0.5 text-xs font-semibold"
+										class="px-2.5 py-0.5 text-xs font-semibold rounded-full"
 										on:click={() => {
 											cookieName = name;
 											cookieValue = value;
