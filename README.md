@@ -39,5 +39,5 @@ You can preview the production build with `pnpm run preview`.
 ## Publishing
 
 ```bash
-pnpm publish
+npm publish
 ```
