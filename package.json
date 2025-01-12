@@ -1,7 +1,13 @@
 {
 	"name": "cookiiies",
 	"version": "0.1.1",
+	"description": "A cookie popup-, banner- and sheet focused on accessibility and ui/ux.",
+	"repository": "https://github.com/jonasfroeller/cookiiies",
 	"license": "MIT",
+	"keywords": [
+		"svelte-component",
+		"cookie-banner"
+	],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
