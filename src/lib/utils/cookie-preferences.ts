@@ -64,7 +64,7 @@ function createCookiePreferences() {
             {} as Record<string, boolean>
         );
 
-        CookieManager.set(COOKIE_NAME, JSON.stringify(preferences), { days: 365, secure: true });
+        CookieManager.set(COOKIE_NAME, JSON.stringify(preferences), { days: 365, secure: true }, true);
     };
 
     return {
@@ -73,6 +73,14 @@ function createCookiePreferences() {
             update(state => ({
                 ...state,
                 showDetails: !state.showDetails
+            }));
+        },
+        toggleSelected: (category: CookieCategory) => {
+            update(state => ({
+                ...state,
+                categories: state.categories.map(cat =>
+                    cat.id === category.id ? { ...cat, checked: !cat.checked } : cat
+                )
             }));
         },
         acceptAll: () => {

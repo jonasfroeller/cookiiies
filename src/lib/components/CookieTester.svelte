@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { type Cookie, CookieManager } from '../utils/cookie.js';
-	import Button from './ui/button/button.svelte';
+	import { Button } from './ui/button/index.js';
 	import Switch from './ui/switch/switch.svelte';
 	import * as Table from './ui/table/index.js';
 	import { BROWSER } from 'esm-env';
 	import { onMount } from 'svelte';
 
-	let cookieName = '';
-	let cookieValue = '';
-	let cookieDays = 365;
-	let isSecure = true;
-	let sameSite: Cookie.SameSite = 'Lax';
-	let cookies: Record<string, string> = {};
+	let cookieName = $state('');
+	let cookieValue = $state('');
+	let cookieDays = $state(365);
+	let isSecure = $state(true);
+	let sameSite: Cookie.SameSite = $state('Lax');
+	let cookies: Record<string, string> = $state({});
 
 	onMount(() => {
 		refreshCookies();
@@ -113,8 +113,8 @@
 	</div>
 
 	<div class="space-x-2">
-		<Button on:click={setCookie}>Set Cookie</Button>
-		<Button on:click={updateCookie} variant="outline">Update Cookie</Button>
+		<Button onclick={setCookie}>Set Cookie</Button>
+		<Button onclick={updateCookie} variant="outline">Update Cookie</Button>
 	</div>
 
 	<div class="mt-8">
@@ -139,7 +139,7 @@
 										variant="outline"
 										size="sm"
 										class="px-2.5 py-0.5 text-xs font-semibold rounded-full"
-										on:click={() => {
+										onclick={() => {
 											cookieName = name;
 											cookieValue = value;
 										}}
@@ -149,7 +149,7 @@
 								</Table.Cell>
 								<Table.Cell>{value}</Table.Cell>
 								<Table.Cell>
-									<Button variant="destructive" size="sm" on:click={() => deleteCookie(name)}>
+									<Button variant="destructive" size="sm" onclick={() => deleteCookie(name)}>
 										Delete
 									</Button>
 								</Table.Cell>
