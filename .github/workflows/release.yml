@@ -28,11 +28,19 @@ jobs:
 
       - name: Setup npm authentication
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "ERROR: NPM_TOKEN is empty!"
+            exit 1
+          fi
+          echo "NPM_TOKEN length: ${#NPM_TOKEN}"
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > "${NPM_CONFIG_USERCONFIG}"
           echo "Verifying .npmrc contents:"
-          cat ~/.npmrc | sed 's/:_authToken=.*/:_authToken=****/'
+          cat "${NPM_CONFIG_USERCONFIG}" | sed 's/:_authToken=.*/:_authToken=****/'
           echo "Verifying npm authentication:"
           npm whoami
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_USERCONFIG: /home/runner/work/_temp/.npmrc
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -47,7 +55,6 @@ jobs:
 
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm dlx semantic-release
