@@ -1,0 +1,15 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:recommended", ":semanticCommits"],
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"matchCurrentVersion": "!/^0/",
+			"automerge": true
+		}
+	],
+	"schedule": ["every weekend"],
+	"labels": ["dependencies"],
+	"rangeStrategy": "pin",
+	"semanticCommitScope": "deps"
+}

@@ -4,7 +4,9 @@
 [![total npm downloads](https://badgen.net/npm/dt/cookiiies)](https://www.npmjs.com/package/cookiiies)
 [![latest npm release](https://img.shields.io/npm/v/cookiiies)](https://www.npmjs.com/package/cookiiies?activeTab=versions)
 [![npm package license](https://badgen.net/npm/license/cookiiies)](https://www.npmjs.com/package/cookiiies)
+
 [![semantic-release: svelte](https://img.shields.io/badge/semantic--release-svelte-FF3E00?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
 
 ## Developing
 
@@ -46,3 +48,7 @@ npm publish
 ## Releasing
 
 [Semantic Release GitHub Actions](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md)
+
+## Package Updates
+
+[Renovate Configuration Options](https://docs.renovatebot.com/configuration-options)
