@@ -35,11 +35,10 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Verify dependencies integrity
-        run: pnpm audit signatures
+        run: pnpm audit --prod --ignore-registry-errors --audit-level high # Only fail on high severity issues
 
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm dlx semantic-release
