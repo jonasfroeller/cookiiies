@@ -4,6 +4,7 @@
 [![total npm downloads](https://badgen.net/npm/dt/cookiiies)](https://www.npmjs.com/package/cookiiies)
 [![latest npm release](https://img.shields.io/npm/v/cookiiies)](https://www.npmjs.com/package/cookiiies?activeTab=versions)
 [![npm package license](https://badgen.net/npm/license/cookiiies)](https://www.npmjs.com/package/cookiiies)
+[![semantic-release: svelte](https://img.shields.io/badge/semantic--release-svelte-FF3E00?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 ## Developing
 
@@ -36,8 +37,12 @@ You can preview the production build with `pnpm run preview`.
 
 > To deploy the app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
-## Publishing
+## Manual Publishing
 
 ```bash
 npm publish
 ```
+
+## Releasing
+
+[Semantic Release GitHub Actions](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md)
