@@ -26,6 +26,14 @@ jobs:
           node-version: 'lts/*'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Setup npm authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+          echo "Verifying .npmrc contents:"
+          cat ~/.npmrc | sed 's/:_authToken=.*/:_authToken=****/'
+          echo "Verifying npm authentication:"
+          npm whoami
+
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -39,6 +47,7 @@ jobs:
 
       - name: Release
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm dlx semantic-release
