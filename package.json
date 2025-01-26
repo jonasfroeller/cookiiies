@@ -40,7 +40,7 @@
 		"svelte": "^5.17.3"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.49.1",
+		"@playwright/test": "^1.50.0",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/git": "^10.0.1",
 		"@sveltejs/adapter-auto": "^3.3.1",
