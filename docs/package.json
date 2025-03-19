@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "cookiiies",
+  "version": "0.1.0",
+  "description": "Beautiful Cookie Consent Components for Svelte",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonasfroeller/cookiiies"
+  },
+  "homepage": "https://github.com/jonasfroeller/cookiiies#readme",
+  "bugs": {
+    "url": "https://github.com/jonasfroeller/cookiiies/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "start": "vitepress dev docs"
+  },
+  "devDependencies": {
+    "vitepress": "latest"
+  }
+}
