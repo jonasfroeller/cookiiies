@@ -93,8 +93,20 @@
 	</div>
 
 	<div class="flex flex-wrap gap-2 justify-end my-2">
-		<Button variant="outline" onclick={cookiePreferences.rejectAll}>Reject All</Button>
-		<Button variant="outline" onclick={cookiePreferences.acceptSelected}>Confirm Selection</Button>
+		<Button
+			variant="outline"
+			onclick={() => {
+				cookiePreferences.rejectAll();
+				onClose();
+			}}>Reject All</Button
+		>
+		<Button
+			variant="outline"
+			onclick={() => {
+				cookiePreferences.acceptSelected();
+				onClose();
+			}}>Confirm Selection</Button
+		>
 		<Button
 			variant="secondary"
 			onclick={() => {
@@ -102,6 +114,12 @@
 				onClose();
 			}}>Cancel</Button
 		>
-		<Button variant="default" onclick={cookiePreferences.acceptAll}>Accept All</Button>
+		<Button
+			variant="default"
+			onclick={() => {
+				cookiePreferences.acceptAll();
+				onClose();
+			}}>Accept All</Button
+		>
 	</div>
 </div>
