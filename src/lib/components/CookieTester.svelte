@@ -5,6 +5,8 @@
 	import * as Table from './ui/table/index.js';
 	import { BROWSER } from 'esm-env';
 	import { onMount } from 'svelte';
+	import { getCookieStyleContext, defaultCookieTexts } from './cookie-style/index.js';
+	import { cn } from '$lib/utils.js';
 
 	let cookieName = $state('');
 	let cookieValue = $state('');
@@ -12,6 +14,8 @@
 	let isSecure = $state(true);
 	let sameSite: Cookie.SameSite = $state('Lax');
 	let cookies: Record<string, string> = $state({});
+
+	const styleCtx = getCookieStyleContext();
 
 	onMount(() => {
 		refreshCookies();
@@ -63,48 +67,48 @@
 	}
 </script>
 
-<div class="cc:p-8 cc:space-y-4">
-	<div class="cc:grid cc:grid-cols-2 cc:gap-4">
-		<div class="cc:space-y-2">
-			<label for="cookieName" class="cc:text-sm cc:font-medium">Cookie Name</label>
+<div class={cn("cc:p-8 cc:space-y-4 cc:text-primary", styleCtx.testerRootClass)}>
+	<div class={cn("cc:grid cc:grid-cols-2 cc:gap-4", styleCtx.testerGridClass)}>
+		<div class={cn("cc:space-y-2", styleCtx.testerFieldWrapperClass)}>
+			<label for="cookieName" class={cn("cc:text-sm cc:font-medium", styleCtx.formLabelClass)}>{styleCtx.cookieNameLabelText ?? defaultCookieTexts.cookieNameLabel}</label>
 			<input
 				id="cookieName"
 				type="text"
 				bind:value={cookieName}
-				class="cc:px-3 cc:py-2 cc:w-full cc:rounded-md cc:border"
+				class={cn("cc:px-3 cc:py-2 cc:w-full cc:rounded-md cc:border", styleCtx.formInputClass)}
 			/>
 		</div>
 
-		<div class="cc:space-y-2">
-			<label for="cookieValue" class="cc:text-sm cc:font-medium">Cookie Value</label>
+		<div class={cn("cc:space-y-2", styleCtx.testerFieldWrapperClass)}>
+			<label for="cookieValue" class={cn("cc:text-sm cc:font-medium", styleCtx.formLabelClass)}>{styleCtx.cookieValueLabelText ?? defaultCookieTexts.cookieValueLabel}</label>
 			<input
 				id="cookieValue"
 				type="text"
 				bind:value={cookieValue}
-				class="cc:px-3 cc:py-2 cc:w-full cc:rounded-md cc:border"
+				class={cn("cc:px-3 cc:py-2 cc:w-full cc:rounded-md cc:border", styleCtx.formInputClass)}
 			/>
 		</div>
 	</div>
 
-	<div class="cc:flex cc:items-center cc:space-x-4">
-		<div class="cc:space-y-2">
-			<label for="cookieDays" class="cc:text-sm cc:font-medium">Valid Days</label>
+	<div class={cn("cc:flex cc:items-center cc:space-x-4", styleCtx.formFlexContainerClass)}>
+		<div class={cn("cc:space-y-2", styleCtx.testerFieldWrapperClass)}>
+			<label for="cookieDays" class={cn("cc:text-sm cc:font-medium", styleCtx.formLabelClass)}>{styleCtx.cookieDaysLabelText ?? defaultCookieTexts.cookieDaysLabel}</label>
 			<input
 				id="cookieDays"
 				type="number"
 				bind:value={cookieDays}
-				class="cc:px-3 cc:py-2 cc:w-32 cc:rounded-md cc:border"
+				class={cn("cc:px-3 cc:py-2 cc:w-32 cc:rounded-md cc:border", styleCtx.formInputClass)}
 			/>
 		</div>
 
-		<div class="cc:space-y-2">
-			<label for="secureSwitch" class="cc:text-sm cc:font-medium">Secure</label>
-			<Switch id="secureSwitch" bind:checked={isSecure} />
+		<div class={cn("cc:space-y-2", styleCtx.testerFieldWrapperClass)}>
+			<label for="secureSwitch" class={cn("cc:text-sm cc:font-medium", styleCtx.formLabelClass)}>{styleCtx.secureLabelText ?? defaultCookieTexts.secureLabel}</label>
+			<Switch id="secureSwitch" bind:checked={isSecure} class={styleCtx.formSwitchClass} />
 		</div>
 
-		<div class="cc:space-y-2">
-			<label for="sameSiteSelect" class="cc:text-sm cc:font-medium">SameSite</label>
-			<select id="sameSiteSelect" bind:value={sameSite} class="cc:px-3 cc:py-2 cc:rounded-md cc:border">
+		<div class={cn("cc:space-y-2", styleCtx.testerFieldWrapperClass)}>
+			<label for="sameSiteSelect" class={cn("cc:text-sm cc:font-medium", styleCtx.formLabelClass)}>{styleCtx.sameSiteLabelText ?? defaultCookieTexts.sameSiteLabel}</label>
+			<select id="sameSiteSelect" bind:value={sameSite} class={cn("cc:px-3 cc:py-2 cc:rounded-md cc:border", styleCtx.formSelectClass)}>
 				<option value="Lax">Lax</option>
 				<option value="Strict">Strict</option>
 				<option value="None">None</option>
@@ -112,23 +116,23 @@
 		</div>
 	</div>
 
-	<div class="cc:space-x-2">
-		<Button onclick={setCookie}>Set Cookie</Button>
-		<Button onclick={updateCookie} variant="outline">Update Cookie</Button>
+	<div class={cn("cc:space-x-2", styleCtx.formButtonContainerClass)}>
+		<Button onclick={setCookie} variant={styleCtx.defaultButtonVariant}>{styleCtx.setCookieButtonText ?? defaultCookieTexts.setCookieButton}</Button>
+		<Button onclick={updateCookie} variant={styleCtx.outlineButtonVariant ?? 'outline'}>{styleCtx.updateCookieButtonText ?? defaultCookieTexts.updateCookieButton}</Button>
 	</div>
 
 	<div class="cc:mt-8">
-		<h2 class="cc:mb-4 cc:text-lg cc:font-semibold">Current Cookies</h2>
+		<h2 class={cn("cc:mb-4 cc:text-lg cc:font-semibold", styleCtx.titleClass)}>{styleCtx.currentCookiesTitleText ?? defaultCookieTexts.currentCookiesTitle}</h2>
 		{#if Object.keys(cookies).length === 0}
-			<p class="cc:italic cc:text-gray-500">No cookies found</p>
+			<p class={cn("cc:italic cc:text-gray-500", styleCtx.descriptionParagraphClass)}>{styleCtx.noCookiesFoundText ?? defaultCookieTexts.noCookiesFoundText}</p>
 		{:else}
-			<div class="cc:rounded cc:border">
+			<div class={cn("cc:rounded cc:border", styleCtx.tableWrapperClass)}>
 				<Table.Root>
 					<Table.Header>
 						<Table.Row>
-							<Table.Head>Name</Table.Head>
-							<Table.Head>Value</Table.Head>
-							<Table.Head>Actions</Table.Head>
+							<Table.Head>{styleCtx.cookieTableNameHeaderText ?? defaultCookieTexts.cookieTableNameHeader}</Table.Head>
+							<Table.Head>{styleCtx.cookieTableValueHeaderText ?? defaultCookieTexts.cookieTableValueHeader}</Table.Head>
+							<Table.Head>{styleCtx.cookieTableActionsHeaderText ?? defaultCookieTexts.cookieTableActionsHeader}</Table.Head>
 						</Table.Row>
 					</Table.Header>
 					<Table.Body>
@@ -136,7 +140,7 @@
 							<Table.Row>
 								<Table.Cell>
 									<Button
-										variant="outline"
+										variant={styleCtx.outlineButtonVariant ?? 'outline'}
 										size="sm"
 										class="cc:px-2.5 cc:py-0.5 cc:text-xs cc:font-semibold cc:rounded-full"
 										onclick={() => {
@@ -149,8 +153,8 @@
 								</Table.Cell>
 								<Table.Cell>{value}</Table.Cell>
 								<Table.Cell>
-									<Button variant="destructive" size="sm" onclick={() => deleteCookie(name)}>
-										Delete
+									<Button variant={styleCtx.destructiveButtonVariant ?? 'destructive'} size="sm" onclick={() => deleteCookie(name)}>
+										{styleCtx.deleteButtonText ?? defaultCookieTexts.deleteButton}
 									</Button>
 								</Table.Cell>
 							</Table.Row>

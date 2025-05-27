@@ -3,8 +3,11 @@
 	import CookiePreferencesContent from './CookiePreferencesContent.svelte';
 	import { onMount } from 'svelte';
 	import { CookieManager } from '$lib/utils/cookie.js';
+	import { getCookieStyleContext, defaultCookieTexts } from './cookie-style/index.js';
+	import { cn } from '$lib/utils.js';
 
 	let isOpen = $state(false);
+	const styleCtx = getCookieStyleContext();
 
 	onMount(() => {
 		const preferencesCookie = CookieManager.get('cookie_preferences');
@@ -18,19 +21,20 @@
 	<Drawer.Root
 		bind:open={isOpen}
 	>
-		<Drawer.Content>
-			<Drawer.Header>
-				<Drawer.Title class="cc:text-2xl cc:font-bold">Cookie Preferences</Drawer.Title>
-				<Drawer.Description class="cc:mt-4">
-					<p>
-						We use cookies to enhance your experience on our website. Here you can manage your
-						preferences.
+		<Drawer.Content class='cc:text-primary'>
+			<Drawer.Header class={cn('cc:text-left', styleCtx.headerClass)}>
+				<Drawer.Title class={cn('cc:text-2xl cc:font-bold', styleCtx.titleClass)}>
+					{styleCtx.titleText ?? defaultCookieTexts.title}
+				</Drawer.Title>
+				<Drawer.Description class={cn('cc:mt-4', styleCtx.descriptionClass)}>
+					<p class={styleCtx.descriptionParagraphClass}>
+						{styleCtx.descriptionText ?? defaultCookieTexts.description}
 					</p>
 				</Drawer.Description>
 			</Drawer.Header>
 
 			<CookiePreferencesContent
-				class="cc:px-4 cc:mt-4"
+				class={cn('cc:px-4 cc:mt-4', styleCtx.contentWrapperClass)}
 				onClose={() => {
 					isOpen = false;
 				}}

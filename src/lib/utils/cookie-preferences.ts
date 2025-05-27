@@ -11,7 +11,7 @@ export interface CookieCategory {
     checked: boolean;
 }
 
-interface CookiePreferencesStore {
+export interface CookiePreferencesStore {
     categories: CookieCategory[];
     showDetails: boolean;
 }
@@ -69,6 +69,29 @@ function createCookiePreferences() {
 
     return {
         subscribe,
+        initializeCategories: (newCategories: CookieCategory[]) => {
+            update(state => {
+                const currentShowDetails = state.showDetails;
+                const savedPreferencesString = CookieManager.get(COOKIE_NAME);
+                let savedPreferences: Record<string, boolean> = {};
+                if (savedPreferencesString) {
+                    try {
+                        savedPreferences = JSON.parse(savedPreferencesString);
+                    } catch (e) {
+                        console.error("Error parsing saved cookie preferences", e);
+                    }
+                }
+
+                return {
+                    ...initialState,
+                    showDetails: currentShowDetails,
+                    categories: newCategories.map(cat => ({
+                        ...cat,
+                        checked: cat.required ? true : savedPreferences[cat.id] ?? cat.checked
+                    }))
+                };
+            });
+        },
         toggleDetails: () => {
             update(state => ({
                 ...state,
@@ -107,16 +130,20 @@ function createCookiePreferences() {
             savePreferences();
         },
         loadPreferences: () => {
-            const savedPreferences = CookieManager.get(COOKIE_NAME);
-            if (savedPreferences) {
-                const preferences = JSON.parse(savedPreferences);
-                update(state => ({
-                    ...state,
-                    categories: state.categories.map(category => ({
-                        ...category,
-                        checked: category.required ? true : preferences[category.id] ?? false
-                    }))
-                }));
+            const savedPreferencesString = CookieManager.get(COOKIE_NAME);
+            if (savedPreferencesString) {
+                try {
+                    const preferences = JSON.parse(savedPreferencesString);
+                    update(state => ({
+                        ...state,
+                        categories: state.categories.map(category => ({
+                            ...category,
+                            checked: category.required ? true : preferences[category.id] ?? category.checked
+                        }))
+                    }));
+                } catch (e) {
+                    console.error("Error parsing saved cookie preferences during load", e);
+                }
             }
         },
         updateCategory: (id: string, checked: boolean) => {

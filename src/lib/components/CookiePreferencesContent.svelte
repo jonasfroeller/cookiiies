@@ -4,8 +4,10 @@
 	import { Switch } from '$lib/components/ui/switch/index.js';
 	import * as Accordion from '$lib/components/ui/accordion/index.js';
 	import { ScrollArea } from './ui/scroll-area/index.js';
-	import { cookiePreferences } from '$lib/utils/cookie-preferences.js';
+	import { cookiePreferences, type CookieCategory } from '$lib/utils/cookie-preferences.js';
 	import { onMount } from 'svelte';
+	import { getCookieStyleContext, defaultCookieTexts } from './cookie-style/index.js';
+	import { cn } from '$lib/utils.js';
 
 	let {
 		class: className,
@@ -14,9 +16,12 @@
 		onClose: () => void;
 	} = $props();
 
+	const styleCtx = getCookieStyleContext();
 	let accordionValue = $state($cookiePreferences.showDetails ? 'details' : undefined);
 
-	function handleToggle(category: any) {
+	let categoriesToDisplay = $state<CookieCategory[]>([]);
+
+	function handleToggle(category: CookieCategory) {
 		if (!category.required) {
 			cookiePreferences.toggleSelected(category);
 		}
@@ -26,63 +31,82 @@
 		accordionValue = $cookiePreferences.showDetails ? 'details' : undefined;
 	});
 
+	function getCategoryText(categoryId: string, field: 'name' | 'description', defaultText: string): string {
+		const override = styleCtx.cookieCategoryTextOverrides?.find(o => o.id === categoryId);
+		return override?.[field] ?? defaultText;
+	}
+
 	onMount(() => {
+		if (styleCtx.cookieCategories && styleCtx.cookieCategories.length > 0) {
+			cookiePreferences.initializeCategories(styleCtx.cookieCategories);
+		}
 		cookiePreferences.loadPreferences();
+
+		const unsubscribe = cookiePreferences.subscribe(prefs => {
+			categoriesToDisplay = prefs.categories.map(cat => ({
+				...cat,
+				name: getCategoryText(cat.id, 'name', cat.name),
+				description: getCategoryText(cat.id, 'description', cat.description)
+			}));
+		});
+
+		return unsubscribe;
 	});
 </script>
 
-<div class={className}>
-	<div class="cc:space-y-4">
-		{#each $cookiePreferences.categories as category}
-			<div class="cc:flex cc:items-start cc:p-4 cc:space-x-4 cc:rounded cc:border">
+<div class={cn('cc:text-primary', className)}>
+	<div class={cn('cc:space-y-4', styleCtx.categoryListClass)}>
+		{#each categoriesToDisplay as category (category.id)}
+			<div class={cn('cc:flex cc:items-start cc:p-4 cc:space-x-4 cc:rounded cc:border', styleCtx.categoryItemClass)}>
 				<Switch
+					class={styleCtx.categorySwitchClass}
 					checked={category.checked}
 					disabled={category.required}
 					onCheckedChange={() => handleToggle(category)}
+					checkedBgColor={styleCtx.switchCheckedBgColor}
+					uncheckedBgColor={styleCtx.switchUncheckedBgColor}
+					thumbColor={styleCtx.switchThumbColor}
 				/>
-				<div>
-					<h3 class="cc:font-semibold">
+				<div class={styleCtx.categoryTextWrapperClass}>
+					<h3 class={cn('cc:font-semibold', styleCtx.categoryNameClass)}>
 						{category.name}
-						{category.required ? '(Required)' : ''}
+						{#if category.required}
+							<span class={styleCtx.categoryNameRequiredClass}> {styleCtx.categoryRequiredChipText ?? defaultCookieTexts.categoryRequiredChipText}</span>
+						{/if}
 					</h3>
-					<p class="cc:text-sm cc:text-gray-600">{category.description}</p>
+					<p class={cn('cc:text-sm cc:text-gray-600', styleCtx.categoryDescriptionClass)}>{category.description}</p>
 				</div>
 			</div>
 		{/each}
 	</div>
 
-	<div class="cc:mt-6">
+	<div class={cn('cc:mt-6', styleCtx.accordionRootClass)}>
 		<Accordion.Root type="single" value={accordionValue}>
-			<Accordion.Item value="details">
-				<Accordion.Trigger class="cc:text-sm cc:font-medium">
-					Detailed Cookie Information
+			<Accordion.Item value="details" class={styleCtx.accordionItemClass}>
+				<Accordion.Trigger class={cn('cc:text-sm cc:font-medium', styleCtx.accordionTriggerClass)}>
+					{styleCtx.detailedInfoTriggerText ?? defaultCookieTexts.detailedInfoTrigger}
 				</Accordion.Trigger>
-				<Accordion.Content>
-					<div class="cc:pt-2 cc:pb-4">
-						<ScrollArea class="cc:h-[100px] cc:w-full">
-							<div class="cc:p-4 cc:space-y-2 cc:text-sm cc:rounded-md cc:bg-secondary/50">
-								<p class="cc:leading-relaxed">
-									<strong>Storage Duration:</strong> The storage duration of cookies varies depending
-									on their purpose. Session cookies are deleted when you close your browser. Persistent
-									cookies remain on your device for a period specified in each cookie, which may range
-									from a few minutes to several years, but we regularly review and update our cookies
-									to ensure they are not kept longer than necessary.
+				<Accordion.Content class={styleCtx.accordionContentClass}>
+					<div class={cn('cc:pt-2 cc:pb-4', styleCtx.scrollAreaWrapperClass)}>
+						<ScrollArea class={cn('cc:h-[100px] cc:w-full', styleCtx.scrollAreaClass)}>
+							<div class={cn('cc:p-4 cc:space-y-2 cc:text-sm cc:rounded-md cc:bg-secondary/50', styleCtx.detailedInfoBoxClass)}>
+								<p class={cn('cc:leading-relaxed', styleCtx.detailedInfoParagraphClass)}>
+									<strong class={styleCtx.detailedInfoStrongClass}>{styleCtx.storageDurationTitleText ?? defaultCookieTexts.storageDurationTitle}</strong>
+									{styleCtx.storageDurationDetailsText ?? defaultCookieTexts.storageDurationText}
 								</p>
-								<p class="cc:leading-relaxed">
-									<strong>Legal Basis:</strong> We rely on different legal bases depending on the type
-									of cookie:
+								<p class={cn('cc:leading-relaxed', styleCtx.detailedInfoParagraphClass)}>
+									<strong class={styleCtx.detailedInfoStrongClass}>{styleCtx.legalBasisTitleText ?? defaultCookieTexts.legalBasisTitle}</strong>
+									{styleCtx.legalBasisDetailsText ?? defaultCookieTexts.legalBasisText}
 								</p>
-								<ul class="cc:pl-4 cc:space-y-1 cc:list-disc">
-									<li>For strictly necessary cookies: Art. 6(1)(f) GDPR (legitimate interests)</li>
-									<li>
-										For performance, functionality, marketing, and analytics cookies: Art. 6(1)(a)
-										GDPR (Consent)
+								<ul class={cn('cc:pl-4 cc:space-y-1 cc:list-disc', styleCtx.detailedInfoListClass)}>
+									<li class={styleCtx.detailedInfoListItemClass}>{styleCtx.legalBasisStrictlyNecessaryText ?? defaultCookieTexts.legalBasisStrictlyNecessary}</li>
+									<li class={styleCtx.detailedInfoListItemClass}>
+										{styleCtx.legalBasisConsentText ?? defaultCookieTexts.legalBasisConsent}
 									</li>
 								</ul>
-								<p class="cc:leading-relaxed">
-									<strong>Data Sharing:</strong> We do not share data collected by strictly necessary
-									cookies. For performance, functionality, marketing, and analytics cookies, data may
-									be shared with third parties only with your explicit consent.
+								<p class={cn('cc:leading-relaxed', styleCtx.detailedInfoParagraphClass)}>
+									<strong class={styleCtx.detailedInfoStrongClass}>{styleCtx.dataSharingTitleText ?? defaultCookieTexts.dataSharingTitle}</strong>
+									{styleCtx.dataSharingDetailsText ?? defaultCookieTexts.dataSharingText}
 								</p>
 							</div>
 						</ScrollArea>
@@ -92,34 +116,34 @@
 		</Accordion.Root>
 	</div>
 
-	<div class="cc:flex cc:flex-wrap cc:gap-2 cc:justify-end cc:my-2">
+	<div class={cn('cc:flex cc:flex-wrap cc:gap-2 cc:justify-end cc:my-2', styleCtx.footerClass)}>
 		<Button
-			variant="outline"
+			variant={styleCtx.rejectAllButtonVariant ?? 'outline'}
 			onclick={() => {
 				cookiePreferences.rejectAll();
 				onClose();
-			}}>Reject All</Button
+			}}>{styleCtx.rejectAllButtonText ?? defaultCookieTexts.rejectAllButton}</Button
 		>
 		<Button
-			variant="outline"
+			variant={styleCtx.confirmSelectionButtonVariant ?? 'outline'}
 			onclick={() => {
 				cookiePreferences.acceptSelected();
 				onClose();
-			}}>Confirm Selection</Button
+			}}>{styleCtx.confirmSelectionButtonText ?? defaultCookieTexts.confirmSelectionButton}</Button
 		>
 		<Button
-			variant="secondary"
+			variant={styleCtx.cancelButtonVariant ?? 'secondary'}
 			onclick={() => {
 				cookiePreferences.loadPreferences();
 				onClose();
-			}}>Cancel</Button
+			}}>{styleCtx.cancelButtonText ?? defaultCookieTexts.cancelButton}</Button
 		>
 		<Button
-			variant="default"
+			variant={styleCtx.acceptAllButtonVariant ?? 'default'}
 			onclick={() => {
 				cookiePreferences.acceptAll();
 				onClose();
-			}}>Accept All</Button
+			}}>{styleCtx.acceptAllButtonText ?? defaultCookieTexts.acceptAllButton}</Button
 		>
 	</div>
 </div>
