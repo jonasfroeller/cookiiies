@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/jonasfroeller/cookiiies/compare/v2.2.0...v2.3.0) (2025-05-27)
+
+
+### Features
+
+* **cookies:** make cookie components customizable (text, topics, styling) ([8244dff](https://github.com/jonasfroeller/cookiiies/commit/8244dff2a358581f48b7e1407a9e904a20c264f3))
+
 # [2.2.0](https://github.com/jonasfroeller/cookiiies/compare/v2.1.0...v2.2.0) (2025-05-27)
 
 
