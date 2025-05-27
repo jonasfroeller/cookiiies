@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/jonasfroeller/cookiiies/compare/v2.1.0...v2.2.0) (2025-05-27)
+
+
+### Features
+
+* **styling:** implement 'cc:' prefix for Tailwind CSS classes to prevent collisions ([7ff0e52](https://github.com/jonasfroeller/cookiiies/commit/7ff0e5280998ba7062a4900510d630462329a1f2))
+
 # [2.1.0](https://github.com/jonasfroeller/cookiiies/compare/v2.0.0...v2.1.0) (2025-05-27)
 
 
