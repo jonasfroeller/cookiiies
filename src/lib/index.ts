@@ -1,3 +1,4 @@
+import './app.css'; // will be true in final build
 import CookiePopup__SvelteComponent_ from "./components/CookiePopup.svelte";
 import CookieBanner__SvelteComponent_ from "./components/CookieBanner.svelte";
 import CookieSidebar__SvelteComponent_ from "./components/CookieSidebar.svelte";
@@ -10,4 +11,4 @@ export {
     CookiePopup__SvelteComponent_ as CookiePopup,
     CookieManager,
     cookiePreferences
-}
+};

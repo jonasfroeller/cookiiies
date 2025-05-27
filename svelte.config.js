@@ -13,9 +13,9 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		alias: {
-			$components: "scr/lib/components",
-			$shadcn: "scr/lib/components/ui",
-			$utils: "scr/lib/utils"
+			$components: "src/lib/components",
+			$shadcn: "src/lib/components/ui",
+			$utils: "src/lib/utils"
 		}
 	}
 };
