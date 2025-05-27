@@ -4,23 +4,23 @@
 	import { type VariantProps, tv } from "tailwind-variants";
 
 	export const buttonVariants = tv({
-		base: "focus-visible:ring-ring inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+		base: "cc:focus-visible:ring-ring cc:inline-flex cc:items-center cc:justify-center cc:gap-2 cc:whitespace-nowrap cc:rounded-md cc:text-sm cc:font-medium cc:transition-colors cc:focus-visible:outline-hidden cc:focus-visible:ring-1 cc:disabled:pointer-events-none cc:disabled:opacity-50 cc:[&_svg]:pointer-events-none cc:[&_svg]:size-4 cc:[&_svg]:shrink-0",
 		variants: {
 			variant: {
-				default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm",
+				default: "cc:bg-primary cc:text-primary-foreground cc:hover:bg-primary/90 cc:shadow-sm",
 				destructive:
-					"bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-xs",
+					"cc:bg-destructive cc:text-destructive-foreground cc:hover:bg-destructive/90 cc:shadow-xs",
 				outline:
-					"border-input bg-background hover:bg-accent hover:text-accent-foreground border shadow-xs",
-				secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs",
-				ghost: "hover:bg-accent hover:text-accent-foreground",
-				link: "text-primary underline-offset-4 hover:underline",
+					"cc:border-input cc:bg-background cc:hover:bg-accent cc:hover:text-accent-foreground cc:border cc:shadow-xs",
+				secondary: "cc:bg-secondary cc:text-secondary-foreground cc:hover:bg-secondary/80 cc:shadow-xs",
+				ghost: "cc:hover:bg-accent cc:hover:text-accent-foreground",
+				link: "cc:text-primary cc:underline-offset-4 cc:hover:underline",
 			},
 			size: {
-				default: "h-9 px-4 py-2",
-				sm: "h-8 rounded-md px-3 text-xs",
-				lg: "h-10 rounded-md px-8",
-				icon: "h-9 w-9",
+				default: "cc:h-9 cc:px-4 cc:py-2",
+				sm: "cc:h-8 cc:rounded-md cc:px-3 cc:text-xs",
+				lg: "cc:h-10 cc:rounded-md cc:px-8",
+				icon: "cc:h-9 cc:w-9",
 			},
 		},
 		defaultVariants: {

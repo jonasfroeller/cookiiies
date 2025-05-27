@@ -14,18 +14,18 @@
 	} = $props();
 </script>
 
-<AccordionPrimitive.Header {level} class="flex">
+<AccordionPrimitive.Header {level} class="cc:flex">
 	<AccordionPrimitive.Trigger
 		bind:ref
 		class={cn(
-			"flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+			"cc:flex cc:flex-1 cc:items-center cc:justify-between cc:py-4 cc:text-sm cc:font-medium cc:transition-all cc:hover:underline cc:[&[data-state=open]>svg]:rotate-180",
 			className
 		)}
 		{...restProps}
 	>
 		{@render children?.()}
 		<ChevronDown
-			class="text-muted-foreground size-4 shrink-0 transition-transform duration-200"
+			class="cc:text-muted-foreground cc:size-4 cc:shrink-0 cc:transition-transform cc:duration-200"
 		/>
 	</AccordionPrimitive.Trigger>
 </AccordionPrimitive.Header>

@@ -20,8 +20,8 @@
 	>
 		<Drawer.Content>
 			<Drawer.Header>
-				<Drawer.Title class="text-2xl font-bold">Cookie Preferences</Drawer.Title>
-				<Drawer.Description class="mt-4">
+				<Drawer.Title class="cc:text-2xl cc:font-bold">Cookie Preferences</Drawer.Title>
+				<Drawer.Description class="cc:mt-4">
 					<p>
 						We use cookies to enhance your experience on our website. Here you can manage your
 						preferences.
@@ -30,7 +30,7 @@
 			</Drawer.Header>
 
 			<CookiePreferencesContent
-				class="px-4 mt-4"
+				class="cc:px-4 cc:mt-4"
 				onClose={() => {
 					isOpen = false;
 				}}

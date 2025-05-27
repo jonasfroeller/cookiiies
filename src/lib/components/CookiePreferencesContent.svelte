@@ -32,54 +32,54 @@
 </script>
 
 <div class={className}>
-	<div class="space-y-4">
+	<div class="cc:space-y-4">
 		{#each $cookiePreferences.categories as category}
-			<div class="flex items-start p-4 space-x-4 rounded border">
+			<div class="cc:flex cc:items-start cc:p-4 cc:space-x-4 cc:rounded cc:border">
 				<Switch
 					checked={category.checked}
 					disabled={category.required}
 					onCheckedChange={() => handleToggle(category)}
 				/>
 				<div>
-					<h3 class="font-semibold">
+					<h3 class="cc:font-semibold">
 						{category.name}
 						{category.required ? '(Required)' : ''}
 					</h3>
-					<p class="text-sm text-gray-600">{category.description}</p>
+					<p class="cc:text-sm cc:text-gray-600">{category.description}</p>
 				</div>
 			</div>
 		{/each}
 	</div>
 
-	<div class="mt-6">
+	<div class="cc:mt-6">
 		<Accordion.Root type="single" value={accordionValue}>
 			<Accordion.Item value="details">
-				<Accordion.Trigger class="text-sm font-medium">
+				<Accordion.Trigger class="cc:text-sm cc:font-medium">
 					Detailed Cookie Information
 				</Accordion.Trigger>
 				<Accordion.Content>
-					<div class="pt-2 pb-4">
-						<ScrollArea class="h-[100px] w-full">
-							<div class="p-4 space-y-2 text-sm rounded-md bg-secondary/50">
-								<p class="leading-relaxed">
+					<div class="cc:pt-2 cc:pb-4">
+						<ScrollArea class="cc:h-[100px] cc:w-full">
+							<div class="cc:p-4 cc:space-y-2 cc:text-sm cc:rounded-md cc:bg-secondary/50">
+								<p class="cc:leading-relaxed">
 									<strong>Storage Duration:</strong> The storage duration of cookies varies depending
 									on their purpose. Session cookies are deleted when you close your browser. Persistent
 									cookies remain on your device for a period specified in each cookie, which may range
 									from a few minutes to several years, but we regularly review and update our cookies
 									to ensure they are not kept longer than necessary.
 								</p>
-								<p class="leading-relaxed">
+								<p class="cc:leading-relaxed">
 									<strong>Legal Basis:</strong> We rely on different legal bases depending on the type
 									of cookie:
 								</p>
-								<ul class="pl-4 space-y-1 list-disc">
+								<ul class="cc:pl-4 cc:space-y-1 cc:list-disc">
 									<li>For strictly necessary cookies: Art. 6(1)(f) GDPR (legitimate interests)</li>
 									<li>
 										For performance, functionality, marketing, and analytics cookies: Art. 6(1)(a)
 										GDPR (Consent)
 									</li>
 								</ul>
-								<p class="leading-relaxed">
+								<p class="cc:leading-relaxed">
 									<strong>Data Sharing:</strong> We do not share data collected by strictly necessary
 									cookies. For performance, functionality, marketing, and analytics cookies, data may
 									be shared with third parties only with your explicit consent.
@@ -92,7 +92,7 @@
 		</Accordion.Root>
 	</div>
 
-	<div class="flex flex-wrap gap-2 justify-end my-2">
+	<div class="cc:flex cc:flex-wrap cc:gap-2 cc:justify-end cc:my-2">
 		<Button
 			variant="outline"
 			onclick={() => {

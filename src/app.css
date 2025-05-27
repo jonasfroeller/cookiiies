@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss" prefix(cc);
 
 @theme {
   --breakpoint-2xl: 1400px;
@@ -130,15 +130,9 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply cc:border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply cc:bg-background cc:text-foreground;
   }
-}
-
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-  max-width: theme(--breakpoint-2xl);
 }

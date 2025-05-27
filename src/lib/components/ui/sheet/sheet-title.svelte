@@ -11,6 +11,6 @@
 
 <SheetPrimitive.Title
 	bind:ref
-	class={cn("text-foreground text-lg font-semibold", className)}
+	class={cn("cc:text-foreground cc:text-lg cc:font-semibold", className)}
 	{...restProps}
 />

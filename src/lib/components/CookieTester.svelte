@@ -63,48 +63,48 @@
 	}
 </script>
 
-<div class="p-8 space-y-4">
-	<div class="grid grid-cols-2 gap-4">
-		<div class="space-y-2">
-			<label for="cookieName" class="text-sm font-medium">Cookie Name</label>
+<div class="cc:p-8 cc:space-y-4">
+	<div class="cc:grid cc:grid-cols-2 cc:gap-4">
+		<div class="cc:space-y-2">
+			<label for="cookieName" class="cc:text-sm cc:font-medium">Cookie Name</label>
 			<input
 				id="cookieName"
 				type="text"
 				bind:value={cookieName}
-				class="px-3 py-2 w-full rounded-md border"
+				class="cc:px-3 cc:py-2 cc:w-full cc:rounded-md cc:border"
 			/>
 		</div>
 
-		<div class="space-y-2">
-			<label for="cookieValue" class="text-sm font-medium">Cookie Value</label>
+		<div class="cc:space-y-2">
+			<label for="cookieValue" class="cc:text-sm cc:font-medium">Cookie Value</label>
 			<input
 				id="cookieValue"
 				type="text"
 				bind:value={cookieValue}
-				class="px-3 py-2 w-full rounded-md border"
+				class="cc:px-3 cc:py-2 cc:w-full cc:rounded-md cc:border"
 			/>
 		</div>
 	</div>
 
-	<div class="flex items-center space-x-4">
-		<div class="space-y-2">
-			<label for="cookieDays" class="text-sm font-medium">Valid Days</label>
+	<div class="cc:flex cc:items-center cc:space-x-4">
+		<div class="cc:space-y-2">
+			<label for="cookieDays" class="cc:text-sm cc:font-medium">Valid Days</label>
 			<input
 				id="cookieDays"
 				type="number"
 				bind:value={cookieDays}
-				class="px-3 py-2 w-32 rounded-md border"
+				class="cc:px-3 cc:py-2 cc:w-32 cc:rounded-md cc:border"
 			/>
 		</div>
 
-		<div class="space-y-2">
-			<label for="secureSwitch" class="text-sm font-medium">Secure</label>
+		<div class="cc:space-y-2">
+			<label for="secureSwitch" class="cc:text-sm cc:font-medium">Secure</label>
 			<Switch id="secureSwitch" bind:checked={isSecure} />
 		</div>
 
-		<div class="space-y-2">
-			<label for="sameSiteSelect" class="text-sm font-medium">SameSite</label>
-			<select id="sameSiteSelect" bind:value={sameSite} class="px-3 py-2 rounded-md border">
+		<div class="cc:space-y-2">
+			<label for="sameSiteSelect" class="cc:text-sm cc:font-medium">SameSite</label>
+			<select id="sameSiteSelect" bind:value={sameSite} class="cc:px-3 cc:py-2 cc:rounded-md cc:border">
 				<option value="Lax">Lax</option>
 				<option value="Strict">Strict</option>
 				<option value="None">None</option>
@@ -112,17 +112,17 @@
 		</div>
 	</div>
 
-	<div class="space-x-2">
+	<div class="cc:space-x-2">
 		<Button onclick={setCookie}>Set Cookie</Button>
 		<Button onclick={updateCookie} variant="outline">Update Cookie</Button>
 	</div>
 
-	<div class="mt-8">
-		<h2 class="mb-4 text-lg font-semibold">Current Cookies</h2>
+	<div class="cc:mt-8">
+		<h2 class="cc:mb-4 cc:text-lg cc:font-semibold">Current Cookies</h2>
 		{#if Object.keys(cookies).length === 0}
-			<p class="italic text-gray-500">No cookies found</p>
+			<p class="cc:italic cc:text-gray-500">No cookies found</p>
 		{:else}
-			<div class="rounded border">
+			<div class="cc:rounded cc:border">
 				<Table.Root>
 					<Table.Header>
 						<Table.Row>
@@ -138,7 +138,7 @@
 									<Button
 										variant="outline"
 										size="sm"
-										class="px-2.5 py-0.5 text-xs font-semibold rounded-full"
+										class="cc:px-2.5 cc:py-0.5 cc:text-xs cc:font-semibold cc:rounded-full"
 										onclick={() => {
 											cookieName = name;
 											cookieValue = value;

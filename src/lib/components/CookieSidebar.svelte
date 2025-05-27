@@ -20,8 +20,8 @@
 	>
 		<Sheet.Content>
 			<Sheet.Header>
-				<Sheet.Title class="text-2xl font-bold">Cookie Preferences</Sheet.Title>
-				<Sheet.Description class="mt-4">
+				<Sheet.Title class="cc:text-2xl cc:font-bold">Cookie Preferences</Sheet.Title>
+				<Sheet.Description class="cc:mt-4">
 					<p>
 						We use cookies to enhance your experience on our website. Here you can manage your
 						preferences.
@@ -30,7 +30,7 @@
 			</Sheet.Header>
 
 			<CookiePreferencesContent
-				class="mt-6"
+				class="cc:mt-6"
 				onClose={() => {
 					isOpen = false;
 				}}

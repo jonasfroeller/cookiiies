@@ -21,6 +21,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
+		"prefix:classes": "node scripts/prefix-classes.mjs",
 		"test:integration": "playwright test",
 		"test:unit": "vitest"
 	},

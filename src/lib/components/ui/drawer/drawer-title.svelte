@@ -11,6 +11,6 @@
 
 <DrawerPrimitive.Title
 	bind:ref
-	class={cn("text-lg font-semibold leading-none tracking-tight", className)}
+	class={cn("cc:text-lg cc:font-semibold cc:leading-none cc:tracking-tight", className)}
 	{...restProps}
 />

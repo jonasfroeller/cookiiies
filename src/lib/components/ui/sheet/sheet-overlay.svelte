@@ -12,7 +12,7 @@
 <SheetPrimitive.Overlay
 	bind:ref
 	class={cn(
-		"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0  fixed inset-0 z-50 bg-black/80",
+		"cc:data-[state=open]:animate-in cc:data-[state=closed]:animate-out cc:data-[state=closed]:fade-out-0 cc:data-[state=open]:fade-in-0 cc:fixed cc:inset-0 cc:z-50 cc:bg-black/80",
 		className
 	)}
 	{...restProps}

@@ -14,7 +14,7 @@
 <tr
 	bind:this={ref}
 	class={cn(
-		"hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
+		"cc:hover:bg-muted/50 cc:data-[state=selected]:bg-muted cc:border-b cc:transition-colors",
 		className
 	)}
 	{...restProps}

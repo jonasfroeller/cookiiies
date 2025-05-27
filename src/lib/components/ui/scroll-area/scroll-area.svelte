@@ -18,8 +18,8 @@
 	} = $props();
 </script>
 
-<ScrollAreaPrimitive.Root bind:ref {...restProps} class={cn("relative overflow-hidden", className)}>
-	<ScrollAreaPrimitive.Viewport class="h-full w-full rounded-[inherit]">
+<ScrollAreaPrimitive.Root bind:ref {...restProps} class={cn("cc:relative cc:overflow-hidden", className)}>
+	<ScrollAreaPrimitive.Viewport class="cc:h-full cc:w-full cc:rounded-[inherit]">
 		{@render children?.()}
 	</ScrollAreaPrimitive.Viewport>
 	{#if orientation === "vertical" || orientation === "both"}

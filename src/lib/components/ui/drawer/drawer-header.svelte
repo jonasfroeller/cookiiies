@@ -13,7 +13,7 @@
 
 <div
 	bind:this={ref}
-	class={cn("grid gap-1.5 p-4 text-center sm:text-left", className)}
+	class={cn("cc:grid cc:gap-1.5 cc:p-4 cc:text-center cc:sm:text-left", className)}
 	{...restProps}
 >
 	{@render children?.()}
