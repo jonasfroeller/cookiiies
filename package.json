@@ -1,6 +1,6 @@
 {
 	"name": "cookiiies",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "A cookie popup-, banner- and sheet focused on accessibility and ui/ux.",
 	"repository": {
 		"url": "git+https://github.com/jonasfroeller/cookiiies.git"

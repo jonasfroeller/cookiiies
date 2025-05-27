@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/jonasfroeller/cookiiies/compare/v2.0.0...v2.1.0) (2025-05-27)
+
+
+### Features
+
+* **styling:** bundle TailwindCSS directly in build output ([7828c34](https://github.com/jonasfroeller/cookiiies/commit/7828c34becf847de2f6dbf8f0a1d8875fec808f9))
+
 # [2.0.0](https://github.com/jonasfroeller/cookiiies/compare/v1.1.0...v2.0.0) (2025-05-27)
 
 
