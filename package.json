@@ -65,7 +65,7 @@
 		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.8.3",
 		"vite": "^6.3.5",
-		"vitest": "^3.1.4"
+		"vitest": "^3.2.3"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
