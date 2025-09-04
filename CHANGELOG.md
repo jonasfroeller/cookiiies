@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/jonasfroeller/cookiiies/compare/v2.3.0...v2.3.1) (2025-09-04)
+
+
+### Bug Fixes
+
+* **details:** lean one-line scroll (snap padding + constant baseline) (closes [#23](https://github.com/jonasfroeller/cookiiies/issues/23)) ([a50f5c2](https://github.com/jonasfroeller/cookiiies/commit/a50f5c2b3c911f4ab0e4f993f8aa60c29ba4ba9a))
+
 # [2.3.0](https://github.com/jonasfroeller/cookiiies/compare/v2.2.0...v2.3.0) (2025-05-27)
 
 
