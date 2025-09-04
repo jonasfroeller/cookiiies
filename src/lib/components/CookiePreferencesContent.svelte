@@ -88,7 +88,7 @@
 				</Accordion.Trigger>
 				<Accordion.Content class={styleCtx.accordionContentClass}>
 					<div class={cn('cc:pt-2 cc:pb-4', styleCtx.scrollAreaWrapperClass)}>
-						<ScrollArea class={cn('cc:h-[100px] cc:w-full', styleCtx.scrollAreaClass)}>
+						<ScrollArea oneLinePerScroll={true} class={cn('cc:h-[100px] cc:w-full', styleCtx.scrollAreaClass)}>
 							<div class={cn('cc:p-4 cc:space-y-2 cc:text-sm cc:rounded-md cc:bg-secondary/50', styleCtx.detailedInfoBoxClass)}>
 								<p class={cn('cc:leading-relaxed', styleCtx.detailedInfoParagraphClass)}>
 									<strong class={styleCtx.detailedInfoStrongClass}>{styleCtx.storageDurationTitleText ?? defaultCookieTexts.storageDurationTitle}</strong>
