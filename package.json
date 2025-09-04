@@ -90,6 +90,9 @@
 			"@sveltejs/kit",
 			"@tailwindcss/oxide",
 			"esbuild"
-		]
+		],
+		"overrides": {
+			"devalue": "^5.3.2"
+		}
 	}
 }
