@@ -35,7 +35,7 @@
 	<AlertDialog.Root
 		bind:open={isOpen}
 	>
-		<AlertDialog.Content class="cc:max-w-2xl cc:text-primary">
+		<AlertDialog.Content class="cc:max-w-2xl cc:text-primary cc:max-h-[100dvh] cc:overflow-y-auto">
 			<AlertDialog.Header class={cn('cc:text-left', styleCtx.headerClass)}>
 				<AlertDialog.Title 
 					class={cn('cc:text-2xl cc:font-bold', styleCtx.titleClass)} 

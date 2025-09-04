@@ -22,23 +22,25 @@
 		bind:open={isOpen}
 	>
 		<Drawer.Content class='cc:text-primary'>
-			<Drawer.Header class={cn('cc:text-left', styleCtx.headerClass)}>
-				<Drawer.Title class={cn('cc:text-2xl cc:font-bold', styleCtx.titleClass)}>
-					{styleCtx.titleText ?? defaultCookieTexts.title}
-				</Drawer.Title>
-				<Drawer.Description class={cn('cc:mt-4', styleCtx.descriptionClass)}>
-					<p class={styleCtx.descriptionParagraphClass}>
-						{styleCtx.descriptionText ?? defaultCookieTexts.description}
-					</p>
-				</Drawer.Description>
-			</Drawer.Header>
+			<div class='cc:max-h-[calc(100dvh-6rem)] cc:overflow-y-auto'>
+				<Drawer.Header class={cn('cc:text-left', styleCtx.headerClass)}>
+					<Drawer.Title class={cn('cc:text-2xl cc:font-bold', styleCtx.titleClass)}>
+						{styleCtx.titleText ?? defaultCookieTexts.title}
+					</Drawer.Title>
+					<Drawer.Description class={cn('cc:mt-4', styleCtx.descriptionClass)}>
+						<p class={styleCtx.descriptionParagraphClass}>
+							{styleCtx.descriptionText ?? defaultCookieTexts.description}
+						</p>
+					</Drawer.Description>
+				</Drawer.Header>
 
-			<CookiePreferencesContent
-				class={cn('cc:px-4 cc:mt-4', styleCtx.contentWrapperClass)}
-				onClose={() => {
-					isOpen = false;
-				}}
-			/>
+				<CookiePreferencesContent
+					class={cn('cc:px-4 cc:mt-4', styleCtx.contentWrapperClass)}
+					onClose={() => {
+						isOpen = false;
+					}}
+				/>
+			</div>
 		</Drawer.Content>
 	</Drawer.Root>
 {/if}

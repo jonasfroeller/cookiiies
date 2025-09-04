@@ -21,7 +21,7 @@
 	<Sheet.Root
 		bind:open={isOpen}
 	>
-		<Sheet.Content class="cc:text-primary">
+		<Sheet.Content class="cc:text-primary cc:max-h-[100dvh] cc:overflow-y-auto">
 			<Sheet.Header class={cn('cc:text-left', styleCtx.headerClass)}>
 				<Sheet.Title class={cn('cc:text-2xl cc:font-bold', styleCtx.titleClass)}>
 					{styleCtx.titleText ?? defaultCookieTexts.title}
