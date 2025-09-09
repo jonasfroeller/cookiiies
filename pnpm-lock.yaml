@@ -24,8 +24,8 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       lucide-svelte:
-        specifier: ^0.511.0
-        version: 0.511.0(svelte@5.33.3)
+        specifier: ^0.543.0
+        version: 0.543.0(svelte@5.33.3)
       radix-icons-svelte:
         specifier: ^1.2.1
         version: 1.2.1
@@ -1732,8 +1732,8 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
-  lucide-svelte@0.511.0:
-    resolution: {integrity: sha512-cSBj1UPKt1EXnj3VBUidBqwHyFQ83pLYiTaQ/67Q5thnaP9IPohL2UXjqEzgSXXklYPYQKaAv+kmVdliDWFjWQ==}
+  lucide-svelte@0.543.0:
+    resolution: {integrity: sha512-ri4LXrtoUtm08fED5ZER+MRavMOOscBGnVStoaY5w80uo7OOgt0w6eS4P4H3jtLicpa5RUV+chPwY4JdEHraAA==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
 
@@ -4292,7 +4292,7 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
-  lucide-svelte@0.511.0(svelte@5.33.3):
+  lucide-svelte@0.543.0(svelte@5.33.3):
     dependencies:
       svelte: 5.33.3
 
