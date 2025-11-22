@@ -71,7 +71,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"bits-ui": "^1.8.0",
+		"bits-ui": "^2.0.0",
 		"clsx": "^2.1.1",
 		"esm-env": "^1.2.2",
 		"lucide-svelte": "^0.511.0",
